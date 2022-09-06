@@ -1,0 +1,10 @@
+__pycache__*
+.vercel
+.env
+*.log
+
+node_modules
+
+*.db
+
+build/
