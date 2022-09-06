@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/joho/godotenv v1.4.0
+	gopkg.in/mail.v2 v2.3.1
 	gorm.io/driver/sqlite v1.3.6
 	gorm.io/gorm v1.23.8
 )
@@ -31,5 +32,6 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
+	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

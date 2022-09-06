@@ -3,11 +3,16 @@ package routes
 import (
 	"moisture1/db"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
+var lastSentEmail time.Time
+
 func Register(app *gin.Engine){
+	lastSentEmail = time.Time{}
+
 	r := app.Group("/api")
 
 	r.GET("/readings", getAll)
@@ -29,6 +34,8 @@ func getMac(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"mac": mac, "readings": sensorReadings})
 }
 
+
+
 func addReading(c *gin.Context) {
 	var sensorReading db.SensorReading
 	c.BindJSON(&sensorReading)
@@ -37,6 +44,18 @@ func addReading(c *gin.Context) {
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, result.Error)
 	}
+
+	if reading := sensorReading.Reading; reading <= 70 {
+		dt := time.Now()
+
+		if yesterday := dt.Add(-time.Hour * 24); lastSentEmail.Before(yesterday) {
+			SendWaterWarning("Status: Please Water", "Hello! \n\nIt's me, your plant! Please water me!\nThank you :)")
+			lastSentEmail=dt
+		}
+	}
 	
+	
+	
+
 	c.JSON(http.StatusOK, gin.H{"inserted": sensorReading.ID})
 }
