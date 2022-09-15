@@ -30,7 +30,7 @@ const plantAliases = {
   "C8:C9:A3:54:1B:6C":"Dieffenbachia"
 }
 
-const baseurl = "http://192.168.0.215:8000"
+const baseurl = ""
 const allReadings = baseurl + "/api/readings"
 
 function evaluateReading(reading) {
@@ -114,7 +114,7 @@ function MonitorDeck() {
   
 
   const fetchReadings = () => {
-    axios.get(allReadings)
+    axios.get(allReadings,{headers: {"Bypass-Tunnel-Reminder":"1234"}})
       .then((res)=>{
         const readings_ = res.data.readings.reduce((readingsSoFar, { macAddress, CreatedAt, reading }) => {
           if (!readingsSoFar[macAddress]) readingsSoFar[macAddress] = [];
