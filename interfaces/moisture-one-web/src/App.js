@@ -1,10 +1,12 @@
 import "./App.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import logo from "./logo.svg";
 
 function App() {
   return (
     <div className="App">
+      <SpeedInsights />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
