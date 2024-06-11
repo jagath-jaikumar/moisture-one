@@ -1,4 +1,5 @@
 import invoke
+import os
 
 export_command = "poetry export -f requirements.txt --output requirements.txt --without-hashes"
 
@@ -23,3 +24,8 @@ def export(c):
 @invoke.task
 def dev(c, port=8000):
     c.run(f"uvicorn src.main:app --host 0.0.0.0 --port {port} --reload")
+
+@invoke.task
+def web(c, port=3000):
+    os.chdir("interfaces/moisture-one-web")
+    c.run(f"npm run start -- --port {port}")
