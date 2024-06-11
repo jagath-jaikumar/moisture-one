@@ -6,5 +6,5 @@ app = FastAPI()
 
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def root():
+    return "Moisture One API"
