@@ -20,9 +20,9 @@ int sensor_pin = A0;
 int value ;
 String MAC; 
 
-void setup() {
-  MAC = WiFi.macAddress();
-  Serial.begin(115200);              
+
+void setup_wifi() {
+              
   WiFi.begin(_SSID, _PASSWORD);
  
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
@@ -32,6 +32,16 @@ void setup() {
  
   }
   Serial.println("connected");
+}
+
+void setup() {
+  Serial.begin(115200);  
+  MAC = WiFi.macAddress();
+  setup_wifi();
+  Serial.print("MAC Address: ");
+  Serial.println(MAC);
+
+  
 }
 
 void loop() {
