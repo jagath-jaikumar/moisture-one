@@ -17,5 +17,3 @@ class APIKey(Base):
     id = Column(Integer, primary_key=True)
     key = Column(String)
     enabled = Column(Boolean, default=True)
-
-    user = relationship("User", back_populates="api_key")

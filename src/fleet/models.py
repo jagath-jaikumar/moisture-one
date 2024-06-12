@@ -18,7 +18,7 @@ class Monitor(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    sensor = relationship("Sensor", back_populates="monitor")
+    # sensor = relationship("Sensor", back_populates="monitor")
 
 
 class SensorReading(Base):
@@ -26,7 +26,7 @@ class SensorReading(Base):
 
     id = Column(Integer, primary_key=True)
     value = Column(JSONB)
-    monitor = relationship("Monitor", back_populates="sensor")
+    # monitor = relationship("Monitor", back_populates="sensor")
 
 
 class Plant(Base):
@@ -38,4 +38,4 @@ class Plant(Base):
     description = Column(String)
     image = Column(String)
 
-    monitors: Mapped[List["Monitor"]] = relationship(back_populates="plant")
+    # monitors: Mapped[List["Monitor"]] = relationship(back_populates="plant")
