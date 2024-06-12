@@ -36,3 +36,18 @@ def dev(c, port=8000):
 def web(c, port=3000):
     os.chdir("interfaces/moisture-one-web")
     c.run(f"npm run start -- --port {port}")
+
+
+@invoke.task
+def current(c, config="src/alembic.ini"):
+    c.run(f"alembic -c {config} current ")
+
+
+@invoke.task
+def makemigrations(c, config="src/alembic.ini", message=""):
+    c.run(f"alembic -c {config} revision --autogenerate -m '{message}'")
+
+
+@invoke.task
+def migrate(c, config="src/alembic.ini"):
+    c.run(f"alembic -c {config} upgrade head")

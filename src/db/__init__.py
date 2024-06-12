@@ -7,6 +7,7 @@ from sqlalchemy.pool import NullPool
 from src.db.base import Base
 from src.settings import settings
 from uuid import uuid4
+from contextlib import asynccontextmanager
 
 
 connection_string = f"postgresql+asyncpg://{settings.postgres_user}:{settings.postgres_password}@{settings.postgres_host}:{settings.postgres_port}/{settings.postgres_database}"
@@ -31,6 +32,7 @@ async def get_session() -> AsyncGenerator[AsyncSession, None]:
 
 
 # Create tables before the app start
+@asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
