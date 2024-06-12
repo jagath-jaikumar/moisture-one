@@ -4,7 +4,7 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 from sqlalchemy.pool import NullPool
 
-from src.db.base import Base
+from src.apps import Base
 from src.settings import settings
 from uuid import uuid4
 from contextlib import asynccontextmanager

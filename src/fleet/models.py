@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship, Mapped
-from src.db.base import Base
+from src.apps import Base
 from sqlalchemy.dialects.postgresql import JSONB
 
 from typing import List

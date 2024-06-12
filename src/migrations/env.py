@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 from src.settings import settings
-from src.db.base import Base
+from src.apps import Base
 
 DB_URI = f"postgresql://{settings.postgres_user}:{settings.postgres_password}@{settings.postgres_host}:{settings.postgres_port}/{settings.postgres_database}"
 
