@@ -44,11 +44,3 @@ class SensorReadingCreateSchema(BaseModel):
 class SensorReadingUpdateSchema(BaseModel):
     sensor_id: int
     value: dict
-
-
-class DeviceOnboardingRequestSchema(BaseModel):
-    mac_address: str
-
-
-class DeviceOnboardingResponseSchema(BaseModel):
-    fleetship_id: int
