@@ -1,4 +1,3 @@
-from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from uuid import uuid4
 
@@ -28,12 +27,7 @@ async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False
 # Database session dependency
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with async_session() as session:
-        yield session
-
-
-# Create tables before the app start
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    yield
+        try:
+            yield session
+        finally:
+            await session.close()

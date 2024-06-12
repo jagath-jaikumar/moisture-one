@@ -17,27 +17,31 @@ class PlantUpdateSchema(BaseModel):
 
 class SensorCreateSchema(BaseModel):
     name: str
+    sensor_type: str
+    fleetship_id: int
 
 
 class SensorUpdateSchema(BaseModel):
     name: str
+    sensor_type: str
+    fleetship_id: int
 
 
-class MonitorCreateSchema(BaseModel):
+class FleetShipCreateSchema(BaseModel):
     name: str
-    sensor_id: int
+    plant_id: int
 
 
-class MonitorUpdateSchema(BaseModel):
+class FleetShipUpdateSchema(BaseModel):
     name: str
-    sensor_id: int
+    plant_id: int
 
 
 class SensorReadingCreateSchema(BaseModel):
-    monitor_id: int
+    sensor_id: int
     value: dict
 
 
 class SensorReadingUpdateSchema(BaseModel):
-    monitor_id: int
+    sensor_id: int
     value: dict

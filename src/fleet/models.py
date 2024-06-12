@@ -1,25 +1,11 @@
 from typing import List
 
-from sqlalchemy import Column, Integer, String
+import enum
+from sqlalchemy import Column, Integer, String, Enum, ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, relationship
 
 from src.apps import Base
-
-
-class Sensor(Base):
-    __tablename__ = "sensor"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-
-class Monitor(Base):
-    __tablename__ = "monitor"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    # sensor = relationship("Sensor", back_populates="monitor")
 
 
 class SensorReading(Base):
@@ -27,7 +13,34 @@ class SensorReading(Base):
 
     id = Column(Integer, primary_key=True)
     value = Column(JSONB)
-    # monitor = relationship("Monitor", back_populates="sensor")
+
+    sensor_id = Column(Integer, ForeignKey("sensor.id"))
+    sensor = relationship("Sensor", back_populates="readings")
+
+
+class Sensor(Base):
+    __tablename__ = "sensor"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    sensor_type = Column(String)
+
+    fleetship_id = Column(Integer, ForeignKey("fleetship.id"))
+    fleetship = relationship("FleetShip", back_populates="sensors")
+
+    readings = relationship("SensorReading", back_populates="sensor")
+
+
+class FleetShip(Base):
+    __tablename__ = "fleetship"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+
+    plant_id = Column(Integer, ForeignKey("plant.id"))
+    plant = relationship("Plant", back_populates="fleetships")
+
+    sensors = relationship("Sensor", back_populates="fleetship")
 
 
 class Plant(Base):
@@ -39,4 +52,4 @@ class Plant(Base):
     description = Column(String)
     image = Column(String)
 
-    # monitors: Mapped[List["Monitor"]] = relationship(back_populates="plant")
+    fleetships = relationship("FleetShip", back_populates="plant")

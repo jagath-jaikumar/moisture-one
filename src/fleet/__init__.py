@@ -24,13 +24,13 @@ sensor_router = crud_router(
     tags=["Sensor"],
 )
 
-monitor_router = crud_router(
+fleetship_router = crud_router(
     session=get_session,
-    model=models.Monitor,
-    create_schema=schemas.MonitorCreateSchema,
-    update_schema=schemas.MonitorUpdateSchema,
-    path="/monitor",
-    tags=["Monitor"],
+    model=models.FleetShip,
+    create_schema=schemas.FleetShipCreateSchema,
+    update_schema=schemas.FleetShipUpdateSchema,
+    path="/fleet-ship",
+    tags=["FleetShip"],
 )
 
 
@@ -46,5 +46,5 @@ sensor_reading_router = crud_router(
 
 router.include_router(plant_router)
 router.include_router(sensor_router)
-router.include_router(monitor_router)
+router.include_router(fleetship_router)
 router.include_router(sensor_reading_router)
