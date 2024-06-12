@@ -1,9 +1,10 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship, Mapped
-from src.apps import Base
-from sqlalchemy.dialects.postgresql import JSONB
-
 from typing import List
+
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.orm import Mapped, relationship
+
+from src.apps import Base
 
 
 class Sensor(Base):

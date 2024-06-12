@@ -1,11 +1,10 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
-from src.settings import settings
+from sqlalchemy import engine_from_config, pool
+
 from src.apps import Base
+from src.settings import settings
 
 DB_URI = f"postgresql://{settings.postgres_user}:{settings.postgres_password}@{settings.postgres_host}:{settings.postgres_port}/{settings.postgres_database}"
 

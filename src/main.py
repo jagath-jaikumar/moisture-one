@@ -1,13 +1,12 @@
 from typing import Union
 
-from fastapi import FastAPI, Depends
+from fastapi import Depends, FastAPI
 
+from src.admin import router as admin_router
+from src.fleet import router as fleet_router
+from src.middleware import auth
 from src.settings import settings
 from src.utils.sentry import init as sentry_init
-from src.fleet import router as fleet_router
-from src.admin import router as admin_router
-from src.middleware import auth
-
 
 sentry_init(settings)
 app = FastAPI()
@@ -19,3 +18,13 @@ app.include_router(admin_router, prefix="/admin", dependencies=[Depends(auth.val
 @app.get("/")
 def root():
     return "Moisture One API"
+
+
+@app.get("/liveness")
+def liveness():
+    return {"status": "ok"}
+
+
+@app.get("/token")
+def readiness(depends=Depends(auth.validate)):
+    return {"token": "valid"}

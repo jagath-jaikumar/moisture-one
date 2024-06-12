@@ -1,14 +1,14 @@
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
+from uuid import uuid4
+
+from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-from typing import AsyncGenerator
-from fastapi import FastAPI
 from sqlalchemy.pool import NullPool
 
 from src.apps import Base
 from src.settings import settings
-from uuid import uuid4
-from contextlib import asynccontextmanager
-
 
 connection_string = f"postgresql+asyncpg://{settings.postgres_user}:{settings.postgres_password}@{settings.postgres_host}:{settings.postgres_port}/{settings.postgres_database}"
 

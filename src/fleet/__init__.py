@@ -1,8 +1,8 @@
-from fastcrud import crud_router
-from src.fleet import schemas
-from src.fleet import models
-from src.db import get_session
 from fastapi import APIRouter
+from fastcrud import crud_router
+
+from src.db import get_session
+from src.fleet import models, schemas
 
 router = APIRouter()
 

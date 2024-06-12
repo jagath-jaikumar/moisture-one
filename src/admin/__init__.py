@@ -1,8 +1,8 @@
-from fastcrud import crud_router
-from src.admin import schemas
-from src.admin import models
-from src.db import get_session
 from fastapi import APIRouter
+from fastcrud import crud_router
+
+from src.admin import models, schemas
+from src.db import get_session
 
 router = APIRouter()
 
