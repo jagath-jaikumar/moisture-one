@@ -29,7 +29,7 @@ fleetship_router = crud_router(
     model=models.FleetShip,
     create_schema=schemas.FleetShipCreateSchema,
     update_schema=schemas.FleetShipUpdateSchema,
-    path="/fleet-ship",
+    path="/fleetship",
     tags=["CRUD"],
 )
 
