@@ -25,6 +25,6 @@ def liveness():
     return {"status": "ok"}
 
 
-@app.get("/token")
+@app.get("/validate")
 def readiness(depends=Depends(auth.validate)):
     return {"token": "valid"}

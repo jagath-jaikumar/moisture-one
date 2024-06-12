@@ -22,7 +22,6 @@ class Sensor(Base):
     __tablename__ = "sensor"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
     sensor_type = Column(String)
 
     fleetship_id = Column(Integer, ForeignKey("fleetship.id"))
@@ -35,9 +34,10 @@ class FleetShip(Base):
     __tablename__ = "fleetship"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String, nullable=True)
+    mac_address = Column(String)
 
-    plant_id = Column(Integer, ForeignKey("plant.id"))
+    plant_id = Column(Integer, ForeignKey("plant.id"), nullable=True)
     plant = relationship("Plant", back_populates="fleetships")
 
     sensors = relationship("Sensor", back_populates="fleetship")

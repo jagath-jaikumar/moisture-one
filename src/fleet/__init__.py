@@ -12,7 +12,7 @@ plant_router = crud_router(
     create_schema=schemas.PlantCreateSchema,
     update_schema=schemas.PlantUpdateSchema,
     path="/plant",
-    tags=["Plant"],
+    tags=["CRUD"],
 )
 
 sensor_router = crud_router(
@@ -21,7 +21,7 @@ sensor_router = crud_router(
     create_schema=schemas.SensorCreateSchema,
     update_schema=schemas.SensorUpdateSchema,
     path="/sensor",
-    tags=["Sensor"],
+    tags=["CRUD"],
 )
 
 fleetship_router = crud_router(
@@ -30,7 +30,7 @@ fleetship_router = crud_router(
     create_schema=schemas.FleetShipCreateSchema,
     update_schema=schemas.FleetShipUpdateSchema,
     path="/fleet-ship",
-    tags=["FleetShip"],
+    tags=["CRUD"],
 )
 
 
@@ -40,7 +40,7 @@ sensor_reading_router = crud_router(
     create_schema=schemas.SensorReadingCreateSchema,
     update_schema=schemas.SensorReadingUpdateSchema,
     path="/sensor-reading",
-    tags=["SensorReading"],
+    tags=["CRUD"],
     deleted_methods=["delete"],
 )
 

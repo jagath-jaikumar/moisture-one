@@ -28,8 +28,7 @@ class SensorUpdateSchema(BaseModel):
 
 
 class FleetShipCreateSchema(BaseModel):
-    name: str
-    plant_id: int
+    mac_address: str
 
 
 class FleetShipUpdateSchema(BaseModel):
@@ -45,3 +44,11 @@ class SensorReadingCreateSchema(BaseModel):
 class SensorReadingUpdateSchema(BaseModel):
     sensor_id: int
     value: dict
+
+
+class DeviceOnboardingRequestSchema(BaseModel):
+    mac_address: str
+
+
+class DeviceOnboardingResponseSchema(BaseModel):
+    fleetship_id: int

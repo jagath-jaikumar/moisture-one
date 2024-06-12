@@ -1,8 +1,10 @@
 from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy import Column, DateTime
+import datetime
 
 
 class Base(DeclarativeBase):
-    pass
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 
 from src.admin import models as admin_models

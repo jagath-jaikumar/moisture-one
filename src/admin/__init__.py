@@ -13,7 +13,7 @@ user_router = crud_router(
     create_schema=schemas.UserCreateSchema,
     update_schema=schemas.UserUpdateSchema,
     path="/user",
-    tags=["User"],
+    tags=["CRUD"],
 )
 
 router.include_router(user_router)

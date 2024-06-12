@@ -13,7 +13,7 @@ def test_read_liveness():
     assert response.json() == {"status": "ok"}
 
 
-def test_read_token():
-    response = client.get("/token")
+def test_validate_token():
+    response = client.get("/validate")
     assert response.status_code == 200
     assert response.json() == {"token": "valid"}
