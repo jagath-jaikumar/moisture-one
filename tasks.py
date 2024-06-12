@@ -1,14 +1,20 @@
-import invoke
 import os
 
-export_command = "poetry export -f requirements.txt --output requirements.txt --without-hashes"
+import invoke
+
+export_command = (
+    "poetry export -f requirements.txt --output requirements.txt --without-hashes"
+)
+
 
 def _export(c):
     c.run(export_command)
 
+
 @invoke.task
 def install(c):
     c.run("poetry install")
+
 
 @invoke.task
 def add(c, package, args=""):
@@ -24,6 +30,7 @@ def export(c):
 @invoke.task
 def dev(c, port=8000):
     c.run(f"uvicorn src.main:app --host 0.0.0.0 --port {port} --reload")
+
 
 @invoke.task
 def web(c, port=3000):

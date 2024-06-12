@@ -9,6 +9,13 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.111.0"
+sqlalchemy = "^2.0.30"
+fastcrud = "^0.13.0"
+pydantic-settings = "^2.3.2"
+python-dotenv = "^1.0.1"
+sentry-sdk = "^2.5.1"
+asyncpg = "^0.29.0"
+greenlet = "^3.0.3"
 
 
 [tool.poetry.group.dev.dependencies]
